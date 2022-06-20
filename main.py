@@ -98,10 +98,10 @@ class Tetris:
         self.freeze ()
 
     def go_down(self):
-        while not self.intersects():
-            self.figure.y += 1
-        self.figure.y -= 1
-        self.freeze()
+        self.figure.y += 1
+        if self.intersects():
+            self.figure.y -= 1
+            self.freeze()
                 
     def freeze(self):
         for i in range(4):
@@ -191,7 +191,7 @@ while not done:
                 p = i * 4 + j
                 if p in game.figure.image():
                     pygame.draw.rect(screen, colors[game.figure.color],
-                                      [game.x + game.zoom * (j + game.figure.x) + 1, game.y + game.zoom (i + game.figure.y) + 1, game.zoom - 2, game.zoom - 2])
+                                    [game.x + game.zoom * (j + game.figure.x) + 1, game.y + game.zoom * (i + game.figure.y) + 1, game.zoom - 2, game.zoom - 2])
 
     font = pygame.font.SysFont('Calibri', 25, True, False)
     font1 = pygame.font.SysFont('Calibri', 65, True, False)
