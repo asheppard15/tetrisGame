@@ -2,13 +2,13 @@ import pygame
 import random
 
 colors = [
-  {255, 102, 204},
-  {0, 51, 204},
-  {0, 204, 0},
-  {255, 102, 0},
-  {204, 51, 255},
-  {153, 0, 51},
-  {0, 204, 255}
+  (255, 102, 204),
+  (0, 51, 204),
+  (0, 204, 0),
+  (255, 102, 0),
+  (204, 51, 255),
+  (153, 0, 51),
+  (0, 204, 255),
 ]
 
 class Figure:
@@ -95,7 +95,7 @@ class Tetris:
         while not self.intersects():
             self.figure.y += 1
         self.figure.y -= 1
-        self.freeze ()
+        self.freeze()
 
     def go_down(self):
         self.figure.y += 1
@@ -127,14 +127,14 @@ class Tetris:
 
 pygame.init()
 
-GREEN = (0, 51, 0) 
-NAVY = (0, 0, 102)
-GREYBLUE = (102, 153, 153)
+BLACK = (0, 0, 0) 
+WHITE = (255, 255, 255)
+GREY = (128, 128, 128)
 
 size = (400, 500)
 screen = pygame.display.set_mode(size)
 
-pygame.display.set_caption('BEST Tetris Game')
+pygame.display.set_caption('Tetris')
 
 done = False
 clock = pygame.time.Clock()
@@ -176,11 +176,11 @@ while not done:
             if event.key == pygame.K_DOWN:
                 pressing_down = False
 
-    screen.fill(GREYBLUE)
+    screen.fill(WHITE)
 
     for i in range(game.height):
         for j in range(game.width):
-            pygame.draw.rect(screen, NAVY, [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
+            pygame.draw.rect(screen, GREY, [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
             if game.field[i][j] > 0:
                 pygame.draw.rect(screen, colors[game.field[i][j]],
                                 [game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2, game.zoom - 1])
@@ -195,7 +195,7 @@ while not done:
 
     font = pygame.font.SysFont('Calibri', 25, True, False)
     font1 = pygame.font.SysFont('Calibri', 65, True, False)
-    text = font.render("Score: " + str(game.score), True, GREEN)
+    text = font.render("Score: " + str(game.score), True, BLACK)
     text_game_over = font1.render("Game Over", True, (255, 125, 0))
     text_game_over1 = font1.render("Press ESC", True, (255, 215, 0))
 
